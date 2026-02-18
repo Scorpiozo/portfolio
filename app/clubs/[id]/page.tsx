@@ -1,19 +1,16 @@
 "use client";
-
+export async function generateStaticParams() {
+  return [
+    { id: 'cyber-security' },
+    { id: 'code-chef' },
+    { id: 'microsoft' },
+  ];
+}
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
 import Loading from "@/app/loading";
 import CustomCursor from "@/app/components/CustomCursor";
-export async function generateStaticParams() {
-  // Replace this with your actual club IDs
-  return [
-    { id: 'cyber-security' },
-    { id: 'code-chef' },
-    { id: 'microsoft' },
-    // Add all your club IDs here
-  ];
-}
 
 interface ClubData {
   title: string;
