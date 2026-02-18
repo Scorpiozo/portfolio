@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { motion, AnimatePresence } from "framer-motion";
 
-import Link from "next/link";
 
 import Loading from "./loading";
 
@@ -133,9 +132,25 @@ export default function Home() {
 
     const cCtx = cC.getContext("2d")!;
 
-    let blood: any[] = [];
+    interface Particle {
+      x: number;
+      y: number;
+      s: number;
+      v: number;
+      o: number;
+    }
 
-    let stars: any[] = [];
+    let blood: Particle[] = [];
+
+    interface Star {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      s: number;
+    }
+    
+    let stars: Star[] = [];
 
     const init = () => {
       bC.width = cC.width = window.innerWidth;
@@ -292,7 +307,7 @@ export default function Home() {
         <section className="reveal w-full">
           <div className="max-w-xl md:max-w-2xl lg:max-w-2xl">
             <h2 className="text-crimson font-bold text-[20px] tracking-[0.6em] mb-8 uppercase opacity-80 font-sans drop-shadow-[0_0_10px_rgba(255,0,0,0.7)]">
-              // DATA_ENTRY
+                {/* // */} DATA_ENTRY
             </h2>
 
             <p className="font-manifesto italic text-lg sm:text-xl md:text-2xl leading-[1.3] text-zinc-300 tracking-tight">
@@ -311,7 +326,7 @@ export default function Home() {
               <div className="h-2 w-2 bg-nitro animate-pulse shadow-[0_0_10px_#0055ff]" />
 
               <h2 className="text-nitro font-bold text-[9px] md:text-[20px] tracking-[0.5em] md:tracking-[0.8em] uppercase opacity-80 font-sans drop-shadow-[0_0_8px_rgba(0,85,255,0.4)]">
-                // LOG_DIRECTORY: TECHNICAL_ASSETS
+               {/* // */} LOG_DIRECTORY: TECHNICAL_ASSETS
               </h2>
             </div>
 
@@ -387,7 +402,7 @@ export default function Home() {
           <div className="flex justify-between items-end mb-16 md:mb-24 px-4 md:px-0">
             <div>
               <h2 className="text-crimson font-bold text-[20px] tracking-[0.6em] uppercase opacity-80 font-sans mb-4 drop-shadow-[0_0_12px_rgba(255,0,0,0.8)]">
-                // AFFILIATED_CLUBS
+                  {/* // */} AFFILIATED_CLUBS
               </h2>
 
               <p className="text-zinc-500 font-sans text-xs uppercase tracking-widest italic">
@@ -446,7 +461,7 @@ export default function Home() {
 
         <section className="reveal flex flex-col items-center py-40 border-t border-white/5">
           <h2 className="text-crimson font-black text-[20px] tracking-[0.6em] mb-12 uppercase opacity-80 font-sans drop-shadow-[0_0_12px_rgba(255,0,0,0.8)]">
-            // ESTABLISH_CONNECTION
+            {/* // */} ESTABLISH_CONNECTION
           </h2>
 
           <div className="flex flex-wrap justify-center gap-6 w-full max-w-5xl px-4">
