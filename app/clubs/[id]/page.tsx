@@ -2,10 +2,30 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
+import Link from "next/link";
 import Loading from "@/app/loading";
 import CustomCursor from "@/app/components/CustomCursor";
 
-const CLUB_DATA: Record<string, any> = {
+interface ClubData {
+  title: string;
+  role: string;
+  desc: string;
+  accent: string;
+  bgAccent: string;
+  capabilities: Record<string, number>;
+  operation?: {
+    name: string;
+    status: string;
+    detail: string;
+  };
+  logs: Array<{
+    label: string;
+    content: string;
+  }>;
+}
+
+
+const CLUB_DATA: Record<string, ClubData> = {
   "cyber-security": {
     title: "CYBER SECURITY",
     role: "CTF Contributor & Design Member",
@@ -125,7 +145,7 @@ export default function ClubPage() {
 
       {/* 1. RESTORED NAVIGATION (Top Left) */}
       <nav className="max-w-7xl mx-auto mb-12 relative z-10">
-        <a
+        <Link
           href="/"
           onClick={handleReturn}
           className="group inline-flex items-center gap-4 text-xs font-mono tracking-[0.5em] text-zinc-500 hover:text-white transition-all uppercase"
@@ -134,7 +154,7 @@ export default function ClubPage() {
             ←
           </span>
           <span>Return_to_Main_Void</span>
-        </a>
+        </Link>
       </nav>
 
       {/* BACKGROUND DECO */}
@@ -156,7 +176,7 @@ export default function ClubPage() {
           </div>
           <div className="text-left md:text-right space-y-3">
             <p className="text-zinc-400 font-mono text-xs uppercase tracking-[0.4em] border-b border-zinc-800 pb-3">
-              // {club.desc}
+              {/* // */} {club.desc}
             </p>
             <p className="text-xs font-mono text-zinc-600 uppercase italic tracking-widest">
               {club.role}
@@ -177,7 +197,7 @@ export default function ClubPage() {
             </h3>
             <div className="space-y-8">
               {Object.entries(club.capabilities).map(
-                ([skill, value]: [string, any]) => (
+                ([skill, value]: [string, number]) => (
                   <div key={skill} className="space-y-3">
                     <div className="flex justify-between text-[11px] font-mono uppercase text-zinc-300 font-bold tracking-wider">
                       <span>{skill}</span>
@@ -228,7 +248,7 @@ export default function ClubPage() {
             <h2 className="text-xs font-mono text-zinc-500 uppercase tracking-[0.5em] flex items-center gap-6">
               Mission_Logs <div className="h-[1px] flex-1 bg-zinc-900" />
             </h2>
-            {club.logs.map((log: any, i: number) => (
+            {club.logs.map((log: { label: string; content: string }, i: number) => (
               <div key={i} className="group flex gap-10">
                 <span className="text-zinc-800 font-mono text-4xl font-black">
                   0{i + 1}
