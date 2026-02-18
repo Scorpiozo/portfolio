@@ -11,8 +11,25 @@ export default function Background() {
     const cC = constellationRef.current;
     const bCtx = bC.getContext("2d")!;
     const cCtx = cC.getContext("2d")!;
-    let blood: any[] = [];
-    let stars: any[] = [];
+    
+    interface Particle {
+      x: number;
+      y: number;
+      s: number;
+      v: number;
+      o: number;
+    }
+
+    interface Star {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      s: number;
+    }
+
+    let blood: Particle[] = [];
+    let stars: Star[] = [];
     let animationFrameId: number;
 
     const init = () => {
