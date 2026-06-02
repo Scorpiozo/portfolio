@@ -1,62 +1,39 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-
 import Loading from "./loading";
-
 import { useRouter } from "next/navigation";
-
 import CustomCursor from "@/app/components/CustomCursor";
+import Background from "@/app/components/Background"; // Imported our background here!
 
 const CONTENT = {
   name: "Anandhita Akhileshwaran",
-
   role: "creative developer",
-
   manifesto:
     "I am a passionate Computer Science and Business Analytics student with a strong interest in cybersecurity, programming, and technology incorporated for business statistics. Proficient in multiple programming languages, I thrive in dynamic learning environments and continuously seek to expand my technical skill set. I am actively involved in extracurricular activities, such as being a member cyber security club, codechef club, and have a keen interest in graphics and art and I do animation. I also enjoy cooking and designing, which further reflects my creativity and problem-solving abilities. Along with my technical strengths, I possess excellent soft skills and have significant experience working in collaborative team settings. An avid reader and music enthusiast (particularly fond of Konnakol), I am an eager learner with a curiosity for exploring diverse fields and ideas.",
-
   github: "https://github.com/Scorpiozo",
-
   linkedin: "https://www.linkedin.com/in/anandhita-akhileshwaran-304738316/",
-
   codechef: "https://www.codechef.com/users/scorpiozo",
-
   instagram: "https://instagram.com/",
-
   kaggle: "https://www.kaggle.com/anuakhil",
-
   clubs: [
     {
       id: "01",
-
       title: "CYBER SECURITY",
-
       desc: "Technical & Design Division",
-
       path: "/clubs/cyber-security",
     },
-
     {
       id: "02",
-
       title: "CODE CHEF",
-
       desc: "Speed Coding & Algorithms",
-
       path: "/clubs/code-chef",
     },
-
     {
       id: "03",
-
       title: "MICROSOFT",
-
       desc: "Development Division",
-
       path: "/clubs/microsoft",
     },
   ],
@@ -64,194 +41,39 @@ const CONTENT = {
 
 const SKILLS = [
   { name: "Next. js", type: "nitro" },
-
   { name: "Python", type: "crimson" },
-
   { name: "Java", type: "crimson" },
-
   { name: "C/C++", type: "crimson" },
-
   { name: "R and R studio", type: "nitro" },
-
   { name: "Machine Learning", type: "nitro" },
-
   { name: "Business Stats", type: "nitro" },
-
   { name: "Data Modelling Using Spreadsheets", type: "crimson" },
-
   { name: "SQL // NoSQL", type: "nitro" },
-
   { name: "Cyber-Forensics", type: "nitro" },
-
   { name: "Linux Systems", type: "crimson" },
-
   { name: "Network Security", type: "crimson" },
-
   { name: "HTML/CSS/js", type: "nitro" },
-
   { name: "Git and GitHub", type: "nitro" },
-
   { name: "Software Engineering Documentation (SDLC)", type: "nitro" },
-
   { name: "Animation", type: "crimson" },
 ];
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
-
   const [loadingTrigger, setLoadingTrigger] = useState(false);
-
-  const bloodRef = useRef<HTMLCanvasElement>(null);
-
-  const constellationRef = useRef<HTMLCanvasElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  const router = useRouter();
-
   const handleNavigation = (e: React.MouseEvent, path: string) => {
     e.preventDefault();
-
     setLoadingTrigger(true);
-
     setTimeout(() => {
       router.push(path);
     }, 200);
   };
-
-  useEffect(() => {
-    if (!mounted || !bloodRef.current || !constellationRef.current) return;
-
-    const bC = bloodRef.current;
-
-    const cC = constellationRef.current;
-
-    const bCtx = bC.getContext("2d")!;
-
-    const cCtx = cC.getContext("2d")!;
-
-    interface Particle {
-      x: number;
-      y: number;
-      s: number;
-      v: number;
-      o: number;
-    }
-
-    let blood: Particle[] = [];
-
-    interface Star {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      s: number;
-    }
-    
-    let stars: Star[] = [];
-
-    const init = () => {
-      bC.width = cC.width = window.innerWidth;
-
-      bC.height = cC.height = window.innerHeight;
-
-      blood = Array.from({ length: 70 }, () => ({
-        x: Math.random() * bC.width,
-
-        y: Math.random() * bC.height,
-
-        s: Math.random() * 4 + 1.5,
-
-        v: Math.random() * 1.5 + 0.5,
-
-        o: Math.random() * 0.7 + 0.2,
-      }));
-
-      stars = Array.from({ length: 60 }, () => ({
-        x: Math.random() * cC.width,
-
-        y: Math.random() * cC.height,
-
-        vx: (Math.random() - 0.5) * 0.4,
-
-        vy: (Math.random() - 0.5) * 0.4,
-
-        s: Math.random() * 2,
-      }));
-    };
-
-    const animate = () => {
-      bCtx.clearRect(0, 0, bC.width, bC.height);
-
-      blood.forEach((p) => {
-        p.y -= p.v;
-
-        if (p.y < -10) p.y = bC.height + 10;
-
-        bCtx.globalAlpha = p.o;
-
-        bCtx.fillStyle = "#ff0000";
-
-        bCtx.beginPath();
-
-        bCtx.arc(p.x, p.y, p.s, 0, Math.PI * 2);
-
-        bCtx.fill();
-      });
-
-      cCtx.clearRect(0, 0, cC.width, cC.height);
-
-      stars.forEach((s, i) => {
-        s.x += s.vx;
-
-        s.y += s.vy;
-
-        if (s.x < 0 || s.x > cC.width) s.vx *= -1;
-
-        if (s.y < 0 || s.y > cC.height) s.vy *= -1;
-
-        cCtx.fillStyle = "#0055ff";
-
-        cCtx.beginPath();
-
-        cCtx.arc(s.x, s.y, s.s, 0, Math.PI * 2);
-
-        cCtx.fill();
-
-        for (let j = i + 1; j < stars.length; j++) {
-          const s2 = stars[j];
-
-          const d = Math.hypot(s.x - s2.x, s.y - s2.y);
-
-          if (d < 180) {
-            cCtx.strokeStyle = `rgba(0, 85, 255, ${1 - d / 180})`;
-
-            cCtx.lineWidth = 0.8;
-
-            cCtx.beginPath();
-
-            cCtx.moveTo(s.x, s.y);
-
-            cCtx.lineTo(s2.x, s2.y);
-
-            cCtx.stroke();
-          }
-        }
-      });
-
-      requestAnimationFrame(animate);
-    };
-
-    init();
-
-    animate();
-
-    window.addEventListener("resize", init);
-
-    return () => window.removeEventListener("resize", init);
-  }, [mounted]);
 
   useEffect(() => {
     if (!mounted) return;
@@ -262,7 +84,6 @@ export default function Home() {
           if (e.isIntersecting) e.target.classList.add("visible");
         });
       },
-
       { threshold: 0.1 }
     );
 
@@ -273,25 +94,15 @@ export default function Home() {
 
   return (
     <main className="void-grain relative bg-black min-h-screen">
-      <canvas
-        ref={bloodRef}
-        className="fixed inset-0 z-0 pointer-events-none"
-      />
-
-      <canvas
-        ref={constellationRef}
-        className="fixed inset-0 z-10 pointer-events-none mix-blend-screen opacity-70"
-      />
-
-      <div className="fixed inset-0 bg-gradient-to-b from-black via-transparent to-black z-20 pointer-events-none" />
+      {/* Target Background Component injected cleanly */}
+      <Background />
 
       {/* 1. HERO SECTION */}
-
       <section className="relative z-30 h-screen flex flex-col items-center justify-center text-center px-4">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-[9vw] font-black italic uppercase tracking-[-0.08em] leading-[0.9] font-sans"
+          className="text-[9vw] font-black italic uppercase tracking-[-0.08em] leading-[0.9] font-sans text-white"
         >
           {CONTENT.name}
         </motion.h1>
@@ -302,12 +113,11 @@ export default function Home() {
       </section>
 
       {/* 2. CONTENT STREAM */}
-
       <div className="relative z-30 max-w-7xl mx-auto space-y-[60vh] pb-40 px-8">
         <section className="reveal w-full">
           <div className="max-w-xl md:max-w-2xl lg:max-w-2xl">
             <h2 className="text-crimson font-bold text-[20px] tracking-[0.6em] mb-8 uppercase opacity-80 font-sans drop-shadow-[0_0_10px_rgba(255,0,0,0.7)]">
-                {/* // */} DATA_ENTRY
+               DATA_ENTRY
             </h2>
 
             <p className="font-manifesto italic text-lg sm:text-xl md:text-2xl leading-[1.3] text-zinc-300 tracking-tight">
@@ -319,14 +129,12 @@ export default function Home() {
         </section>
 
         {/* --- TECHNICAL_VAULT --- */}
-
         <section className="reveal">
           <div className="flex flex-col md:flex-row items-baseline justify-between mb-8 md:mb-16 border-b border-zinc-900 pb-6 gap-4">
             <div className="flex items-center gap-4">
               <div className="h-2 w-2 bg-nitro animate-pulse shadow-[0_0_10px_#0055ff]" />
-
               <h2 className="text-nitro font-bold text-[9px] md:text-[20px] tracking-[0.5em] md:tracking-[0.8em] uppercase opacity-80 font-sans drop-shadow-[0_0_8px_rgba(0,85,255,0.4)]">
-               {/* // */} LOG_DIRECTORY: TECHNICAL_ASSETS
+                LOG_DIRECTORY: TECHNICAL_ASSETS
               </h2>
             </div>
 
@@ -354,7 +162,6 @@ export default function Home() {
                     <span className="font-mono text-[7px] md:text-[8px] text-zinc-800 group-hover:text-zinc-500 transition-colors uppercase tracking-tighter">
                       S_{i + 1}0
                     </span>
-
                     <span className="font-mono text-[9px] md:text-[10px] text-zinc-600">
                       {i + 1 < 10 ? `0${i + 1}` : i + 1}
                     </span>
@@ -397,19 +204,16 @@ export default function Home() {
         </section>
 
         {/* --- AFFILIATED_CLUBS --- */}
-
         <section className="reveal">
           <div className="flex justify-between items-end mb-16 md:mb-24 px-4 md:px-0">
             <div>
               <h2 className="text-crimson font-bold text-[20px] tracking-[0.6em] uppercase opacity-80 font-sans mb-4 drop-shadow-[0_0_12px_rgba(255,0,0,0.8)]">
-                  {/* // */} AFFILIATED_CLUBS
+                  AFFILIATED_CLUBS
               </h2>
-
               <p className="text-zinc-500 font-sans text-xs uppercase tracking-widest italic">
                 Initialize sector selection...
               </p>
             </div>
-
             <div className="hidden md:block h-px w-1/3 bg-gradient-to-r from-transparent to-zinc-900" />
           </div>
 
@@ -431,7 +235,6 @@ export default function Home() {
                   <div className="relative z-10 border-l border-zinc-800 group-hover:border-zinc-500 pl-6 md:pl-8 transition-all duration-700">
                     <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
                       <div className="h-[1px] w-6 md:w-8 bg-zinc-500 group-hover:bg-nitro group-hover:w-16 group-hover:shadow-[0_0_15px_#0055ff] transition-all duration-700" />
-
                       <span className="text-[8px] md:text-[10px] font-mono text-nitro opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest drop-shadow-[0_0_10px_rgba(0,85,255,0.7)]">
                         Initialize_Link
                       </span>
@@ -445,7 +248,6 @@ export default function Home() {
                       <p className="text-zinc-400 uppercase tracking-[0.2em] md:tracking-[0.4em] text-[8px] md:text-[9px] font-sans group-hover:text-zinc-600 transition-colors">
                         {club.desc}
                       </p>
-
                       <span className="inline-block w-fit px-2 py-1 bg-zinc-950 border border-zinc-800 text-[7px] md:text-[8px] text-zinc-500 font-mono mt-2 group-hover:border-nitro/40 group-hover:text-nitro transition-all">
                         SEC_TYPE: {club.title.split(" ")[0]}
                       </span>
@@ -458,10 +260,9 @@ export default function Home() {
         </section>
 
         {/* 3. FINAL SOCIAL FOOTER */}
-
         <section className="reveal flex flex-col items-center py-40 border-t border-white/5">
           <h2 className="text-crimson font-black text-[20px] tracking-[0.6em] mb-12 uppercase opacity-80 font-sans drop-shadow-[0_0_12px_rgba(255,0,0,0.8)]">
-            {/* // */} ESTABLISH_CONNECTION
+            ESTABLISH_CONNECTION
           </h2>
 
           <div className="flex flex-wrap justify-center gap-6 w-full max-w-5xl px-4">
@@ -470,25 +271,21 @@ export default function Home() {
               href={CONTENT.github}
               color="border-crimson/30 text-crimson hover:bg-crimson shadow-hover-red"
             />
-
             <SocialLink
               label="LinkedIn"
               href={CONTENT.linkedin}
               color="border-nitro/30 text-nitro hover:bg-nitro shadow-hover-blue"
             />
-
             <SocialLink
               label="Codechef"
               href={CONTENT.codechef}
               color="border-zinc-500/30 text-zinc-400 hover:bg-zinc-200"
             />
-
             <SocialLink
               label="Instagram"
               href={CONTENT.instagram}
               color="border-purple-500/30 text-purple-400 hover:bg-purple-500"
             />
-
             <SocialLink
               label="Kaggle"
               href={CONTENT.kaggle}
@@ -524,15 +321,11 @@ export default function Home() {
 
 function SocialLink({
   label,
-
   href,
-
   color,
 }: {
   label: string;
-
   href: string;
-
   color: string;
 }) {
   return (

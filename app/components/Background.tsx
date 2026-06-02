@@ -108,7 +108,7 @@ export default function Background() {
         ref={constellationRef}
         className="fixed inset-0 z-10 pointer-events-none mix-blend-screen opacity-70"
       />
-      <div className="fixed inset-0 bg-gradient-to-b from-black via-transparent to-black z-20 pointer-events-none" />
+      <div className="fixed inset-0 bg-gradient-to-b from-black via-transparent to-black z-10 pointer-events-none" />
     </>
   );
 }

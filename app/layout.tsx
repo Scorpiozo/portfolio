@@ -24,15 +24,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black overflow-x-hidden`}
       >
-        {/* PASTE YOUR MAIN PAGE BACKGROUND CODE HERE */}
-        {/* Example: If your background was a grid/gradient/radial div: */}
-        <div className="fixed inset-0 z-0 pointer-events-none">
-          {/* Your main page dots, lines, or colors go here */}
-          <div className="absolute inset-0 bg-[radial-gradient(#ffffff10_1px,transparent_1px)] [background-size:40px_40px]" />
+        {/* Main App Container */}
+        <div className="relative z-10 w-full min-h-screen">
+          {children}
         </div>
-
-        {/* Children (your pages) sit on top */}
-        <div className="relative z-10">{children}</div>
       </body>
     </html>
   );
