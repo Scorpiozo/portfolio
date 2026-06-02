@@ -23,7 +23,14 @@ export default function CustomCursor() {
       setCoords({ x: e.clientX, y: e.clientY });
 
       const target = e.target as HTMLElement;
-      setIsHovered(!!target.closest("a, button"));
+      const hoveringClickable = !!target.closest("a, button");
+      setIsHovered(hoveringClickable);
+
+      if (hoveringClickable) {
+        document.body.setAttribute("data-cursor-hover", "true");
+      } else {
+        document.body.removeAttribute("data-cursor-hover");
+      }
     };
 
     window.addEventListener("mousemove", handleMove);

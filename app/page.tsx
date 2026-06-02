@@ -9,7 +9,7 @@ import Background from "@/app/components/Background"; // Imported our background
 
 const CONTENT = {
   name: "Anandhita Akhileshwaran",
-  role: "creative developer",
+  role: "Business Analyst & Developer",
   manifesto:
     "I am a passionate Computer Science and Business Analytics student with a strong interest in cybersecurity, programming, and technology incorporated for business statistics. Proficient in multiple programming languages, I thrive in dynamic learning environments and continuously seek to expand my technical skill set. I am actively involved in extracurricular activities, such as being a member cyber security club, codechef club, and have a keen interest in graphics and art and I do animation. I also enjoy cooking and designing, which further reflects my creativity and problem-solving abilities. Along with my technical strengths, I possess excellent soft skills and have significant experience working in collaborative team settings. An avid reader and music enthusiast (particularly fond of Konnakol), I am an eager learner with a curiosity for exploring diverse fields and ideas.",
   github: "https://github.com/Scorpiozo",
@@ -93,61 +93,62 @@ export default function Home() {
   if (!mounted) return <div className="bg-black w-screen h-screen" />;
 
   return (
-    <main className="void-grain relative bg-black min-h-screen">
+    <main className="void-grain relative bg-black min-h-screen overflow-x-hidden">
       {/* Target Background Component injected cleanly */}
       <Background />
 
       {/* 1. HERO SECTION */}
-      <section className="relative z-30 h-screen flex flex-col items-center justify-center text-center px-4">
+      <section className="relative z-30 h-screen flex flex-col items-center justify-center text-center px-4 md:px-6">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-[9vw] font-black italic uppercase tracking-[-0.08em] leading-[0.9] font-sans text-white"
+          className="text-4xl sm:text-6xl md:text-[8vw] lg:text-[9vw] font-black italic uppercase tracking-[-0.05em] md:tracking-[-0.08em] leading-[0.95] md:leading-[0.9] font-sans text-white max-w-4xl"
         >
           {CONTENT.name}
         </motion.h1>
 
-        <p className="mt-10 text-crimson font-bold tracking-[1em] text-[30px] uppercase opacity-90 font-sans drop-shadow-[0_0_12px_rgba(255,0,0,0.8)]">
+        <p className="mt-6 md:mt-10 text-crimson font-bold tracking-[0.3em] sm:tracking-[0.6em] md:tracking-[1em] text-lg sm:text-2xl md:text-[30px] uppercase opacity-90 font-sans drop-shadow-[0_0_12px_rgba(255,0,0,0.8)] px-2 balance-text">
           {CONTENT.role}
         </p>
       </section>
 
       {/* 2. CONTENT STREAM */}
-      <div className="relative z-30 max-w-7xl mx-auto space-y-[60vh] pb-40 px-8">
+      {/* Adjusted layout gaps from space-y-[60vh] down to space-y-[30vh] on smaller touch-points */}
+      <div className="relative z-30 max-w-7xl mx-auto space-y-[30vh] md:space-y-[60vh] pb-40 px-4 sm:px-6 md:px-8">
         <section className="reveal w-full">
           <div className="max-w-xl md:max-w-2xl lg:max-w-2xl">
-            <h2 className="text-crimson font-bold text-[20px] tracking-[0.6em] mb-8 uppercase opacity-80 font-sans drop-shadow-[0_0_10px_rgba(255,0,0,0.7)]">
-               DATA_ENTRY
+            <h2 className="text-crimson font-bold text-base md:text-[20px] tracking-[0.4em] md:tracking-[0.6em] mb-6 md:mb-8 uppercase opacity-80 font-sans drop-shadow-[0_0_10px_rgba(255,0,0,0.7)]">
+                DATA_ENTRY
             </h2>
 
-            <p className="font-manifesto italic text-lg sm:text-xl md:text-2xl leading-[1.3] text-zinc-300 tracking-tight">
+            <p className="font-manifesto italic text-base sm:text-xl md:text-2xl leading-[1.4] md:leading-[1.3] text-zinc-300 tracking-tight">
               {CONTENT.manifesto}
             </p>
 
-            <div className="mt-12 h-px w-20 bg-gradient-to-r from-crimson to-transparent opacity-40 shadow-[0_0_8px_rgba(255,0,0,0.4)]" />
+            <div className="mt-8 md:mt-12 h-px w-20 bg-gradient-to-r from-crimson to-transparent opacity-40 shadow-[0_0_8px_rgba(255,0,0,0.4)]" />
           </div>
         </section>
 
         {/* --- TECHNICAL_VAULT --- */}
         <section className="reveal">
-          <div className="flex flex-col md:flex-row items-baseline justify-between mb-8 md:mb-16 border-b border-zinc-900 pb-6 gap-4">
-            <div className="flex items-center gap-4">
-              <div className="h-2 w-2 bg-nitro animate-pulse shadow-[0_0_10px_#0055ff]" />
-              <h2 className="text-nitro font-bold text-[9px] md:text-[20px] tracking-[0.5em] md:tracking-[0.8em] uppercase opacity-80 font-sans drop-shadow-[0_0_8px_rgba(0,85,255,0.4)]">
-                LOG_DIRECTORY: TECHNICAL_ASSETS
+          <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-8 md:mb-16 border-b border-zinc-900 pb-6 gap-4">
+            <div className="flex items-center gap-3 md:gap-4">
+              <div className="h-2 w-2 bg-nitro animate-pulse shadow-[0_0_10px_#0055ff] flex-shrink-0" />
+              <h2 className="text-nitro font-bold text-xs sm:text-sm md:text-[20px] tracking-[0.3em] md:tracking-[0.8em] uppercase opacity-80 font-sans drop-shadow-[0_0_8px_rgba(0,85,255,0.4)]">
+                 LOG_DIRECTORY: TECHNICAL_ASSETS
               </h2>
             </div>
 
-            <span className="font-mono text-[8px] md:text-[9px] text-zinc-700 tracking-[0.4em] uppercase">
+            <span className="font-mono text-[8px] md:text-[9px] text-zinc-700 tracking-[0.2em] md:tracking-[0.4em] uppercase">
               Loc: 42.3611° N, 71.0570° W
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 lg:gap-x-24 gap-y-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 lg:gap-x-24 gap-y-1 md:gap-y-2">
             {SKILLS.map((skill, i) => (
               <div
                 key={i}
-                className="group relative flex items-center justify-between py-4 md:py-6 px-4 border border-transparent hover:border-white/5 hover:bg-white/[0.01] transition-all duration-500 overflow-hidden"
+                className="group relative flex items-center justify-between py-3 md:py-6 px-3 md:px-4 border border-transparent hover:border-white/5 hover:bg-white/[0.01] transition-all duration-500 overflow-hidden"
               >
                 <div
                   className={`absolute left-0 top-0 h-full w-[1px] md:w-[2px] opacity-0 group-hover:opacity-100 transition-all duration-500 ${
@@ -157,8 +158,8 @@ export default function Home() {
                   }`}
                 />
 
-                <div className="flex items-center gap-4 md:gap-8 relative z-10">
-                  <div className="flex flex-col min-w-[30px]">
+                <div className="flex items-center gap-4 md:gap-8 relative z-10 mr-4">
+                  <div className="flex flex-col min-w-[25px] md:min-w-[30px]">
                     <span className="font-mono text-[7px] md:text-[8px] text-zinc-800 group-hover:text-zinc-500 transition-colors uppercase tracking-tighter">
                       S_{i + 1}0
                     </span>
@@ -167,14 +168,14 @@ export default function Home() {
                     </span>
                   </div>
 
-                  <span className="text-lg md:text-2xl font-normal italic uppercase tracking-tighter text-zinc-300 group-hover:text-white transition-all duration-300 font-sans">
+                  <span className="text-base sm:text-lg md:text-2xl font-normal italic uppercase tracking-tighter text-zinc-300 group-hover:text-white transition-all duration-300 font-sans break-words max-w-[180px] sm:max-w-none">
                     {skill.name}
                   </span>
                 </div>
 
-                <div className="flex flex-col items-end relative z-10">
+                <div className="flex flex-col items-end relative z-10 flex-shrink-0">
                   <span
-                    className={`text-[8px] md:text-[9px] font-mono font-bold tracking-[0.2em] md:tracking-[0.3em] mb-1 ${
+                    className={`text-[8px] md:text-[9px] font-mono font-bold tracking-[0.1em] md:tracking-[0.3em] mb-1 ${
                       skill.type === "crimson"
                         ? "text-crimson drop-shadow-[0_0_8px_rgba(255,0,0,0.6)]"
                         : "text-nitro/60"
@@ -187,7 +188,7 @@ export default function Home() {
                     {[...Array(4)].map((_, bit) => (
                       <div
                         key={bit}
-                        className={`h-[1px] md:h-[2px] w-2 md:w-3 ${
+                        className={`h-[1px] md:h-[2px] w-1.5 sm:w-2 md:w-3 ${
                           bit < 3
                             ? skill.type === "crimson"
                               ? "bg-crimson shadow-[0_0_6px_rgba(255,0,0,0.6)]"
@@ -205,13 +206,13 @@ export default function Home() {
 
         {/* --- AFFILIATED_CLUBS --- */}
         <section className="reveal">
-          <div className="flex justify-between items-end mb-16 md:mb-24 px-4 md:px-0">
+          <div className="flex flex-col sm:flex-row justify-between sm:items-end mb-12 md:mb-24 px-2 md:px-0 gap-4">
             <div>
-              <h2 className="text-crimson font-bold text-[20px] tracking-[0.6em] uppercase opacity-80 font-sans mb-4 drop-shadow-[0_0_12px_rgba(255,0,0,0.8)]">
+              <h2 className="text-crimson font-bold text-lg md:text-[20px] tracking-[0.4em] md:tracking-[0.6em] uppercase opacity-80 font-sans mb-2 md:mb-4 drop-shadow-[0_0_12px_rgba(255,0,0,0.8)]">
                   AFFILIATED_CLUBS
               </h2>
-              <p className="text-zinc-500 font-sans text-xs uppercase tracking-widest italic">
-                Initialize sector selection...
+              <p className="text-zinc-500 font-sans text-[10px] sm:text-xs uppercase tracking-widest italic">
+                SELECT sector for more...
               </p>
             </div>
             <div className="hidden md:block h-px w-1/3 bg-gradient-to-r from-transparent to-zinc-900" />
@@ -227,28 +228,28 @@ export default function Home() {
                   index % 2 !== 0 ? "md:col-start-6" : "md:col-start-1"
                 }`}
               >
-                <div className="relative transition-all duration-700 px-4 md:px-0">
-                  <span className="absolute -top-6 -left-2 md:-top-12 md:-left-8 text-[22vw] md:text-[12vw] font-black text-white/[0.03] transition-colors duration-700 group-hover:text-crimson/[0.08] font-sans pointer-events-none leading-none">
+                <div className="relative transition-all duration-700 px-2 md:px-0">
+                  <span className="absolute -top-6 -left-2 md:-top-12 md:-left-8 text-[18vw] md:text-[12vw] font-black text-white/[0.03] transition-colors duration-700 group-hover:text-crimson/[0.08] font-sans pointer-events-none leading-none">
                     {club.id}
                   </span>
 
-                  <div className="relative z-10 border-l border-zinc-800 group-hover:border-zinc-500 pl-6 md:pl-8 transition-all duration-700">
-                    <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
-                      <div className="h-[1px] w-6 md:w-8 bg-zinc-500 group-hover:bg-nitro group-hover:w-16 group-hover:shadow-[0_0_15px_#0055ff] transition-all duration-700" />
+                  <div className="relative z-10 border-l border-zinc-800 group-hover:border-zinc-500 pl-4 md:pl-8 transition-all duration-700">
+                    <div className="flex items-center gap-3 md:gap-4 mb-2 md:mb-4">
+                      <div className="h-[1px] w-4 md:w-8 bg-zinc-500 group-hover:bg-nitro group-hover:w-16 group-hover:shadow-[0_0_15px_#0055ff] transition-all duration-700" />
                       <span className="text-[8px] md:text-[10px] font-mono text-nitro opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest drop-shadow-[0_0_10px_rgba(0,85,255,0.7)]">
                         Initialize_Link
                       </span>
                     </div>
 
-                    <h3 className="text-3xl sm:text-4xl md:text-7xl font-black italic uppercase text-white group-hover:text-zinc-500 transition-all duration-500 font-sans leading-[0.85] tracking-tighter">
+                    <h3 className="text-2xl sm:text-4xl md:text-7xl font-black italic uppercase text-white group-hover:text-zinc-500 transition-all duration-500 font-sans leading-[0.9] md:leading-[0.85] tracking-tighter break-words">
                       {club.title}
                     </h3>
 
-                    <div className="mt-4 md:mt-6 flex flex-col gap-2">
-                      <p className="text-zinc-400 uppercase tracking-[0.2em] md:tracking-[0.4em] text-[8px] md:text-[9px] font-sans group-hover:text-zinc-600 transition-colors">
+                    <div className="mt-3 md:mt-6 flex flex-col gap-1 md:gap-2">
+                      <p className="text-zinc-400 uppercase tracking-[0.15em] md:tracking-[0.4em] text-[8px] md:text-[9px] font-sans group-hover:text-zinc-600 transition-colors">
                         {club.desc}
                       </p>
-                      <span className="inline-block w-fit px-2 py-1 bg-zinc-950 border border-zinc-800 text-[7px] md:text-[8px] text-zinc-500 font-mono mt-2 group-hover:border-nitro/40 group-hover:text-nitro transition-all">
+                      <span className="inline-block w-fit px-2 py-0.5 md:py-1 bg-zinc-950 border border-zinc-800 text-[7px] md:text-[8px] text-zinc-500 font-mono mt-1 md:mt-2 group-hover:border-nitro/40 group-hover:text-nitro transition-all">
                         SEC_TYPE: {club.title.split(" ")[0]}
                       </span>
                     </div>
@@ -260,12 +261,12 @@ export default function Home() {
         </section>
 
         {/* 3. FINAL SOCIAL FOOTER */}
-        <section className="reveal flex flex-col items-center py-40 border-t border-white/5">
-          <h2 className="text-crimson font-black text-[20px] tracking-[0.6em] mb-12 uppercase opacity-80 font-sans drop-shadow-[0_0_12px_rgba(255,0,0,0.8)]">
+        <section className="reveal flex flex-col items-center py-20 md:py-40 border-t border-white/5">
+          <h2 className="text-crimson font-black text-lg md:text-[20px] tracking-[0.4em] md:tracking-[0.6em] mb-10 md:mb-12 uppercase opacity-80 font-sans drop-shadow-[0_0_12px_rgba(255,0,0,0.8)] text-center">
             ESTABLISH_CONNECTION
           </h2>
 
-          <div className="flex flex-wrap justify-center gap-6 w-full max-w-5xl px-4">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-4 md:gap-6 w-full max-w-5xl px-2 sm:px-4">
             <SocialLink
               label="GitHub"
               href={CONTENT.github}
@@ -293,7 +294,7 @@ export default function Home() {
             />
           </div>
 
-          <p className="mt-[300px] text-[10px] md:text-[20px] tracking-[1em] md:tracking-[1em] text-crimson uppercase text-center font-black italic drop-shadow-[0_0_20px_rgba(255,0,0,1)]">
+          <p className="mt-[150px] md:mt-[300px] text-sm md:text-[20px] tracking-[0.5em] md:tracking-[1em] text-crimson uppercase text-center font-black italic drop-shadow-[0_0_20px_rgba(255,0,0,1)] px-4">
             SYSTEM_TERMINATED
           </p>
         </section>
@@ -333,9 +334,9 @@ function SocialLink({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`min-w-[180px] py-6 border text-center text-lg font-black italic uppercase tracking-[0.1em] transition-all duration-500 skew-x-[-12deg] hover:scale-[1.05] hover:text-black ${color} font-sans`}
+      className={`w-full sm:w-auto sm:min-w-[180px] py-4 sm:py-6 border text-center text-base sm:text-lg font-black italic uppercase tracking-[0.1em] transition-all duration-500 sm:skew-x-[-12deg] hover:scale-[1.05] hover:text-black ${color} font-sans`}
     >
-      <span className="inline-block skew-x-[12deg]">{label}</span>
+      <span className="inline-block sm:skew-x-[12deg]">{label}</span>
     </a>
   );
 }

@@ -8,12 +8,12 @@ import CustomCursor from "@/app/components/CustomCursor";
 import Background from "@/app/components/Background";
 
 interface ClubData {
-  nodeId: string; // Added explicit ID marker
+  nodeId: string;
   title: string;
   role: string;
   desc: string;
-  borderColor: string; // Separated for strict Tailwind safety
-  textColor: string;   // Separated for strict Tailwind safety
+  borderColor: string;
+  textColor: string;
   bgAccent: string;
   capabilities: Record<string, number>;
   operation?: {
@@ -38,48 +38,30 @@ const CLUB_DATA: Record<string, ClubData> = {
     bgAccent: "bg-crimson",
     capabilities: { Forensics: 92, Cryptography: 88, Networking: 85 },
     logs: [
-      {
-        label: "Challenge_Engineering",
-        content: "Authored original CTF challenges specializing in Cryptography (encryption/decryption) and Digital Forensics.",
-      },
-      {
-        label: "Vulnerability_Analysis",
-        content: "Led workshops in OSINT and forensics to identify and mitigate real-world security vulnerabilities.",
-      },
-      {
-        label: "Systems_&_Networking",
-        content: "Leveraging Linux proficiency and TCP/IP principles to build and simulate network-based attack scenarios.",
-      },
+      { label: "Challenge_Engineering", content: "Authored original CTF challenges specializing in Cryptography (encryption/decryption) and Digital Forensics." },
+      { label: "Vulnerability_Analysis", content: "Led workshops in OSINT and forensics to identify and mitigate real-world security vulnerabilities." },
+      { label: "Systems_&_Networking", content: "Leveraging Linux proficiency and TCP/IP principles to build and simulate network-based attack scenarios." },
     ],
   },
   "code-chef": {
     nodeId: "02",
     title: "CODECHEF CHAPTER",
-    role: "Technical & Design & Social media & content writing & Projects Member",
+    role: "Technical & Design Member",
     desc: "Speed Coding & Algorithms",
     borderColor: "border-nitro",
     textColor: "text-nitro",
     bgAccent: "bg-nitro",
     capabilities: { Efficiency: 95, Logic: 90, Complexity: 88 },
     logs: [
-      {
-        label: "Competitive_Programming",
-        content: "Participate in weekly contests, maintaining a consistent practice schedule to improve algorithmic efficiency.",
-      },
-      {
-        label: "Technical_Analysis",
-        content: "Analysis of optimal solutions and time complexity ($O(n)$ analysis) for diverse data structure challenges.",
-      },
-      {
-        label: "Problem_Solving",
-        content: "Completed the Advent of Code, solving 25 complex puzzles requiring creative logic and implementation.",
-      },
+      { label: "Competitive_Programming", content: "Participate in weekly contests, maintaining a consistent practice schedule to improve algorithmic efficiency." },
+      { label: "Technical_Analysis", content: "Analysis of optimal solutions and time complexity (O(n) analysis) for diverse data structure challenges." },
+      { label: "Problem_Solving", content: "Completed the Advent of Code, solving 25 complex puzzles requiring creative logic and implementation." },
     ],
   },
-  "microsoft": {
+  microsoft: {
     nodeId: "03",
     title: "MICROSOFT CLUB",
-    role: "Innovations // Project Member",
+    role: "Innovations // Project Lead",
     desc: "Development Division",
     borderColor: "border-white",
     textColor: "text-white",
@@ -87,22 +69,13 @@ const CLUB_DATA: Record<string, ClubData> = {
     capabilities: { Architecture: 94, Frontend: 90, AI_Integration: 85 },
     operation: {
       name: "Smart AI Academic Assistant",
-      status: "COMPLETED",
+      status: "UNDERWAY",
       detail: "Unified agent system featuring advanced OCR and intelligent text extraction.",
     },
     logs: [
-      {
-        label: "Unified_Agent",
-        content: "Designed for academic content processing with automated OCR for handwritten notes.",
-      },
-      {
-        label: "Report_Gen",
-        content: "Comprehensive analysis and professional PDF report generation for academic processing.",
-      },
-      {
-        label: "Modern_Stack",
-        content: "Building a modern Next.js frontend with robust intelligent text extraction protocols.",
-      },
+      { label: "Unified_Agent", content: "Designed for academic content processing with automated OCR for handwritten notes." },
+      { label: "Report_Gen", content: "Comprehensive analysis and professional PDF report generation for academic processing." },
+      { label: "Modern_Stack", content: "Building a modern Next.js frontend with robust intelligent text extraction protocols." },
     ],
   },
 };
@@ -117,13 +90,13 @@ export default function ClubClient({ id }: { id: string }) {
     setLoadingTrigger(true);
     setTimeout(() => {
       router.push("/");
-    }, 600); 
+    }, 600);
   };
 
   if (!club) return <div className="p-20 text-white font-mono bg-black min-h-screen">SECTOR_NOT_FOUND...</div>;
 
   return (
-    <main className="min-h-screen bg-black text-white p-8 md:p-16 lg:p-24 font-sans relative overflow-x-hidden">
+    <main className="min-h-screen bg-black text-white p-6 sm:p-12 lg:p-24 font-sans relative overflow-x-hidden">
       <Background />
       <CustomCursor />
       
@@ -148,25 +121,23 @@ export default function ClubClient({ id }: { id: string }) {
         </Link>
       </nav>
 
-      {/* BACKGROUND DECO */}
-      <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:50px_50px] z-0" />
-
-      {/* HEADER SECTION */}
-      <header className="max-w-7xl mx-auto mb-24 relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10">
-          <div className="flex-1">
+      {/* HEADER SECTION - Keeps your absolute desktop layout intact */}
+      <header className="max-w-7xl mx-auto mb-16 lg:mb-24 relative z-10">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 lg:gap-10">
+          <div className="flex-1 w-full">
             <div className="flex items-center gap-4 mb-6">
               <div className={`w-3 h-3 ${club.bgAccent} animate-ping`} />
               <span className="text-xs font-mono tracking-[0.4em] text-zinc-400 uppercase font-bold">
                 Established_Node // {club.nodeId}
               </span>
             </div>
-            <h1 className="text-6xl md:text-9xl font-black italic uppercase leading-[0.8] tracking-tighter">
+            {/* Kept original huge text sizing for desktop, scales naturally down for mobile */}
+            <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black italic uppercase leading-[0.85] lg:leading-[0.8] tracking-tighter break-words lg:break-normal">
               {club.title}
             </h1>
           </div>
-          <div className="text-left md:text-right space-y-3">
-            <p className="text-zinc-400 font-mono text-xs uppercase tracking-[0.4em] border-b border-zinc-800 pb-3">
+          <div className="text-left lg:text-right space-y-3 w-full lg:w-auto border-t border-zinc-900 pt-6 lg:pt-0 lg:border-none">
+            <p className="text-zinc-400 font-mono text-xs uppercase tracking-[0.4em] lg:border-b lg:border-zinc-800 lg:pb-3">
               {club.desc}
             </p>
             <p className="text-xs font-mono text-zinc-600 uppercase italic tracking-widest">
@@ -176,10 +147,12 @@ export default function ClubClient({ id }: { id: string }) {
         </div>
       </header>
 
-      <section className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-16 relative z-10">
+      {/* RESPONSIVE LAYOUT GRID - Grid side-by-side on desktop, stacked on mobile */}
+      <section className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 relative z-10">
+        
         {/* CAPABILITIES PANEL */}
-        <div className="lg:col-span-4 space-y-10">
-          <div className="p-8 border border-zinc-900 bg-zinc-950/40 backdrop-blur-xl relative overflow-hidden">
+        <div className="grid-cols-1 lg:col-span-4 space-y-10">
+          <div className="p-6 lg:p-8 border border-zinc-900 bg-zinc-950/40 backdrop-blur-xl relative overflow-hidden">
             <div className={`absolute top-0 left-0 w-[3px] h-full ${club.bgAccent} opacity-60`} />
             <h3 className="text-xs font-mono text-zinc-500 uppercase mb-8 tracking-[0.3em] border-b border-zinc-900 pb-3">
               Division_Capability
@@ -189,9 +162,7 @@ export default function ClubClient({ id }: { id: string }) {
                 <div key={skill} className="space-y-3">
                   <div className="flex justify-between text-[11px] font-mono uppercase text-zinc-300 font-bold tracking-wider">
                     <span>{skill}</span>
-                    <span className={club.textColor}>
-                      {value}%
-                    </span>
+                    <span className={club.textColor}>{value}%</span>
                   </div>
                   <div className="h-[2px] w-full bg-zinc-900">
                     <div
@@ -206,45 +177,44 @@ export default function ClubClient({ id }: { id: string }) {
         </div>
 
         {/* LOGS PANEL */}
-        <div className="lg:col-span-8 space-y-16">
+        <div className="grid-cols-1 lg:col-span-8 space-y-12 lg:space-y-16">
           {club.operation && (
-            <div className="group relative p-10 border border-zinc-800 bg-zinc-950/30 hover:border-zinc-500 transition-all">
-              <div className="absolute top-6 right-6 flex items-center gap-3">
+            <div className="group relative p-6 lg:p-10 border border-zinc-800 bg-zinc-950/30 hover:border-zinc-500 transition-all">
+              <div className="sm:absolute top-6 right-6 flex items-center gap-3 mb-4 sm:mb-0">
                 <span className="text-[10px] font-mono text-zinc-500 font-bold">
                   STATUS:
                 </span>
-                <span className={`text-[10px] font-mono px-3 py-1 border-2 ${club.borderColor} ${club.textColor} animate-pulse font-black`}
-                >
+                <span className={`text-[10px] font-mono px-3 py-1 border-2 ${club.borderColor} ${club.textColor} animate-pulse font-black`}>
                   {club.operation.status}
                 </span>
               </div>
               <h2 className="text-xs font-mono text-zinc-500 uppercase mb-6 tracking-[0.5em]">
                 Featured_Operation
               </h2>
-              <h4 className="text-4xl font-bold italic mb-4 uppercase leading-tight">
+              <h4 className="text-3xl lg:text-4xl font-bold italic mb-4 uppercase leading-tight">
                 {club.operation.name}
               </h4>
-              <p className="text-zinc-400 text-base font-mono leading-relaxed max-w-2xl">
+              <p className="text-zinc-400 text-sm lg:text-base font-mono leading-relaxed max-w-2xl">
                 {club.operation.detail}
               </p>
             </div>
           )}
 
-          <div className="space-y-20">
+          {/* MISSION LOGS */}
+          <div className="space-y-12 lg:space-y-20">
             <h2 className="text-xs font-mono text-zinc-500 uppercase tracking-[0.5em] flex items-center gap-6">
               Mission_Logs <div className="h-[1px] flex-1 bg-zinc-900" />
             </h2>
             {club.logs.map((log, i) => (
-              <div key={i} className="group flex gap-10">
-                <span className="text-zinc-800 font-mono text-4xl font-black">
+              <div key={i} className="group flex gap-6 lg:gap-10">
+                <span className="text-zinc-800 font-mono text-3xl lg:text-4xl font-black">
                   0{i + 1}
                 </span>
-                <div className="flex-1 border-t border-zinc-800 pt-8">
-                  <h5 className={`text-sm font-mono uppercase tracking-[0.3em] mb-5 font-bold ${club.textColor}`}
-                  >
+                <div className="flex-1 border-t border-zinc-800 pt-6 lg:pt-8">
+                  <h5 className={`text-sm font-mono uppercase tracking-[0.3em] mb-4 lg:mb-5 font-bold ${club.textColor}`}>
                     {log.label}
                   </h5>
-                  <p className="text-2xl md:text-3xl text-zinc-300 font-light leading-snug group-hover:text-white transition-colors">
+                  <p className="text-xl md:text-2xl lg:text-3xl text-zinc-300 font-light leading-snug group-hover:text-white transition-colors">
                     {log.content}
                   </p>
                 </div>
@@ -254,11 +224,12 @@ export default function ClubClient({ id }: { id: string }) {
         </div>
       </section>
 
-      <footer className="max-w-7xl mx-auto mt-32 pt-10 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-6 opacity-60">
+      {/* FOOTER */}
+      <footer className="max-w-7xl mx-auto mt-24 lg:mt-32 pt-10 border-t border-zinc-900 flex flex-col sm:flex-row justify-between items-center gap-6 opacity-60">
         <div className="text-[10px] font-mono uppercase tracking-[0.6em] font-bold">
           Terminal_ID: {id.toUpperCase()}_VOID_STATION
         </div>
-        <div className="flex gap-12 text-[10px] font-mono uppercase tracking-[0.3em]">
+        <div className="flex gap-8 lg:gap-12 text-[10px] font-mono uppercase tracking-[0.3em]">
           <span>Auth: ADMIN_LEVEL_4</span>
           <span className="text-nitro">Buffer: 100%_SYN_OK</span>
         </div>
