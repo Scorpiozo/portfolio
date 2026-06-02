@@ -2,10 +2,10 @@
 const nextConfig = {
   output: 'export',
   basePath: '/portfolio',
+  assetPrefix: '/portfolio', 
   images: {
     unoptimized: true,
   },
-  // This tells GitHub to ignore those red "X" errors for now
   typescript: {
     ignoreBuildErrors: true,
   },
