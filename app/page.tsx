@@ -65,6 +65,13 @@ export default function Home() {
 
   useEffect(() => {
     setMounted(true);
+    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
   }, []);
 
   const handleNavigation = (e: React.MouseEvent, path: string) => {
