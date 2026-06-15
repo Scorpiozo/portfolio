@@ -11,12 +11,17 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  cursor: none !important;
+  cursor: none;
+
+  -webkit-user-select: none;
+  user-select: none;
 }
+
 /* below body styles */
 .font-manifesto {
   font-family: "Cormorant Garamond", serif;
 }
+
 /* Texture Overlay */
 .void-grain::before {
   content: "";
@@ -44,19 +49,23 @@ body {
   transform: translateY(0);
 }
 
-a, 
-button, 
-[role="button"],
-.cursor-pointer,
-select,
-input[type="submit"] {
-  cursor: none !important;
+* {
+  cursor: none;
+}
+
+p,
+h1,
+h2,
+h3,
+span {
+  -webkit-user-select: text;
+  user-select: text;
 }
 
 body[data-cursor-hover="true"] a,
 body[data-cursor-hover="true"] button {
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  color: #a1a1aa; 
+  color: #a1a1aa;
 }
 
 ::-webkit-scrollbar {
