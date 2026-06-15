@@ -1,4 +1,5 @@
 // apps/layout.tsx
+import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -27,6 +28,7 @@ export default function RootLayout({
         {/* Main App Container */}
         <div className="relative z-10 w-full min-h-screen">
           {children}
+          <Analytics />
         </div>
       </body>
     </html>
